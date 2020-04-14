@@ -119,6 +119,11 @@ pub fn config_dir() -> Result<PathBuf, String> {
         .map(|mut x: PathBuf| { x.push("Library/Application Support"); x})
 }
 
+#[cfg(not(target_os = "windows", target_family = "unix"))]
+pub fn config_dir() -> Result<PathBuf, String> {
+    None // fallback
+}
+
 #[cfg(feature = "currency")]
 fn load_currency() -> Option<Result<ast::Defs, String>> {
     Some(currency::load())
