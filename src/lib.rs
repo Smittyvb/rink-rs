@@ -119,7 +119,7 @@ pub fn config_dir() -> Result<PathBuf, String> {
         .map(|mut x: PathBuf| { x.push("Library/Application Support"); x})
 }
 
-#[cfg(not(target_os = "windows", target_family = "unix"))]
+#[cfg(all(not(target_os = "windows"), not(target_family = "unix")))]
 pub fn config_dir() -> Result<PathBuf, String> {
     None // fallback
 }
