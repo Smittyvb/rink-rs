@@ -121,7 +121,7 @@ pub fn config_dir() -> Result<PathBuf, String> {
 
 #[cfg(all(not(target_os = "windows"), not(target_family = "unix")))]
 pub fn config_dir() -> Result<PathBuf, String> {
-    Err("No config dir on this platform") // fallback
+    Err("No config dir on this platform".to_string()) // fallback
 }
 
 #[cfg(feature = "currency")]
